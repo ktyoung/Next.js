@@ -1,31 +1,30 @@
-// Next.js 컴포넌트는 종류가 2개
-// 1-1. server component : 로딩 속도 빠름, 검색엔진 노출 유리
-//      → html에 자바스크립트 기능 넣기 불가능
-//      → useState, useEffect 등 사용 불가
-// 1-2. client component : 로딩속도 느림(자바스크립트 필요, hydration 필요)
-//      → 자바스크립트 기능 및 useState, useEffect 등 사용 가능
-// 1-3. 큰 페이지는 server component, JS기능 필요한 곳만 client component
-
-import { Welcome, subTitle, title } from "./data";
+// 1. props 문법
+// 1-1. <자식Component 작명="전송할데이터" />
+// 1-2. 자식은 props.작명
 
 export default function Cart() {
+  let product = ["Tomatoes", "Pasta"];
   return (
     <div>
-      <h4 className="title">{title}</h4>
-      <Welcome />
-      <CartItem />
-      <CartItem />
-      <CartItem />
+      <h4 className="title">Cart</h4>
+      <CartItem product={product[0]} />
+      <CartItem product={product[1]} />
+      <Banner card="롯데카드" />
+      <Banner card="현대카드" />
     </div>
   );
 }
 
-function CartItem() {
+function CartItem(props) {
   return (
     <div className="cart-item">
-      <p>상품명</p>
+      <p>{props.product}</p>
       <p>$40</p>
       <p>1개</p>
     </div>
   );
+}
+
+function Banner(props) {
+  return <h5>{props.card} 결제 행사 중</h5>;
 }
