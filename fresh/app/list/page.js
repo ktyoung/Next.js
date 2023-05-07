@@ -1,7 +1,11 @@
-// 1. map() 함수 기능
-// 1-1. array에 들어있는 자료의 개수만큼 코드 반복 실행
-// 1-2. 첫 번째 파라미터에 array에 들어있는 자료가 순서대로 저장
-// 1-3. return() 내부에 자료를 작성하면 array에 담아줌
+// 1. 최적화된 이미지 사용하기
+// → 이미지 lazy loading & 사이즈 최적화 & layout shift 방지
+// 1-1. Image 태그 import
+// 1-2. 사용할 이미지 import
+// 1-3. 원하는 곳에서 <Image /> 컴포넌트 사용
+
+import Image from "next/image";
+import food0 from "/public/food0.png";
 
 export default function List() {
   let product = ["Tomatoes", "Pasta", "Coconut"];
@@ -10,8 +14,12 @@ export default function List() {
       <h2 className="title">상품목록</h2>
       {product.map((a, i) => {
         return (
-          // map 반복문 사용 시 key={유니크한값} 속성 추가
           <div className="food" key={i}>
+            <img src={"/food" + i + ".png"} alt="토마토" className="food-img" />
+            {/* <Image src={food0} alt="토마토" className="food-img" /> */}
+            {/* 외부 이미지를 사용하려면 width, height 속성 필요
+            next.config.js 세팅 필요
+            <Image src="https://s3.amazonaws.com/my-bucket/profile.png" width="500" height="500"/> */}
             <h4>{a} $40</h4>
           </div>
         );
