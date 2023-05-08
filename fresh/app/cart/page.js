@@ -1,7 +1,3 @@
-// 1. props 문법
-// 1-1. <자식Component 작명="전송할데이터" />
-// 1-2. 자식은 props.작명
-
 export default function Cart() {
   let product = ["Tomatoes", "Pasta"];
   return (
