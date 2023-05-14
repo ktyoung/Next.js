@@ -10,9 +10,7 @@ export default async function List(props) {
     <div className="list-bg">
       {result.map((a, i) => (
         <div className="list-item" key={i}>
-          {/* <Link> 태그에도 prefetch 기능 내장되어 있음 */}
           <Link
-            // prefetch={false}
             href={"/detail/" + result[i]._id}
             style={{
               fontSize: "20px",
