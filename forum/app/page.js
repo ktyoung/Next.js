@@ -1,6 +1,16 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+import { connectDB } from "@/util/database";
 
-export default function Home() {
-  return <div>안녕하세요.</div>;
+export default async function Home() {
+  // DB 입출력 코드는 Server Component 안에서만 사용하기
+  const db = (await connectDB).db("forum");
+
+  // 컬렉션의 모든 document 꺼내오기
+  let result = await db.collection("post").find().toArray();
+  console.log(result);
+
+  return (
+    <div>
+      <p>안녕하세요.</p>
+    </div>
+  );
 }
