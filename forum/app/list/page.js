@@ -1,5 +1,6 @@
 import { connectDB } from "@/util/database";
 import Link from "next/link";
+import DetailLink from "./DetailLink";
 
 export default async function List(props) {
   const db = (await connectDB).db("forum");
@@ -10,9 +11,11 @@ export default async function List(props) {
       {result.map((a, i) => {
         return (
           <div className="list-item" key={i}>
-            <Link href={"/detail/" + a._id}>
+            {/* <Link> 태그에도 prefetch 기능 내장되어 있음 */}
+            <Link prefetch={false} href={"/detail/" + a._id}>
               <h4>{a.title}</h4>
             </Link>
+            <DetailLink />
             <p>1월 1일</p>
           </div>
         );

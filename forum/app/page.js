@@ -6,7 +6,7 @@ export default async function Home() {
 
   return (
     <div>
-      <p>안녕하세요.</p>
+      <p>안녕하세요, 메인페이지입니다.</p>
     </div>
   );
 }
