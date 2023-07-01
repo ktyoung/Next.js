@@ -13,6 +13,9 @@ export default async function List(props) {
             <Link prefetch={false} href={"/detail/" + a._id}>
               <h4>{a.title}</h4>
             </Link>
+            <Link href={"/edit/" + a._id} className="list-btn">
+              ✏️
+            </Link>
             <p>1월 1일</p>
           </div>
         );
