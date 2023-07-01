@@ -1,5 +1,8 @@
-// NextAuth 라이브러리 세팅
+// Next-auth 라이브러리 세팅
+// Next-auth 라이브러리는 기본적으로 모든 방식이 JWT
 
+import { connectDB } from "@/util/database";
+import { MongoDBAdapter } from "@next-auth/mongodb-adapter";
 import NextAuth from "next-auth";
 import GithubProvider from "next-auth/providers/github";
 
@@ -11,5 +14,7 @@ export const authOptions = {
     }),
   ],
   secret: "1q2w3e4r",
+  // DB adapter 세팅(session 방식 사용)
+  adapter: MongoDBAdapter(connectDB),
 };
 export default NextAuth(authOptions);

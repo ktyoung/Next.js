@@ -1,8 +1,19 @@
 import { connectDB } from "@/util/database";
+import { getServerSession } from "next-auth";
+import { authOptions } from "../auth/[...nextauth]";
 
 export default async function handler(request, response) {
   if (request.method == "POST") {
-    console.log(request.body); // 유저가 보낸 데이터(input에 입력한 데이터)
+    // 현재 로그인한 유저 정보 (민감한 개인 정보는 유저가 직접 보내면 안 됨!)
+    let session = await getServerSession(request, response, authOptions);
+    console.log(session);
+
+    if (session) {
+      request.body.author = session.user.email;
+      console.log(request.body);
+    }
+
+    // console.log(request.body); // 유저가 보낸 데이터(input에 입력한 데이터)
 
     // 예외처리: 제목을 작성하지 않았을 때
     if (request.body.title == "") {
