@@ -29,7 +29,7 @@ export default function ListItem(props) {
                     return r.json();
                   })
                   .then((r) => {
-                    console.log(r);
+                    // console.log(r);
                     e.target.parentElement.style.opacity = 0;
                     setTimeout(() => {
                       e.target.parentElement.style.display = "none";
