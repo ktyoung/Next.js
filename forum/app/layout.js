@@ -5,6 +5,8 @@ import LoginBtn from "./LoginBtn";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
 import LogoutBtn from "./LogoutBtn";
+import { cookies } from "next/headers";
+import DarkMode from "./DarkMode";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,9 +20,15 @@ export default async function RootLayout({ children }) {
   let session = await getServerSession(authOptions);
   console.log(session);
 
+  // 쿠키는 server component에서도 사용 가능
+  let res = cookies().get("mode");
+  console.log(res);
+
   return (
-    <html lang="en">
-      <body className={inter.className}>
+    <html>
+      <body
+        className={res != undefined && res.value == "dark" ? "dark-mode" : ""}
+      >
         <div className="navbar">
           <Link href="/" className="logo">
             Forum
@@ -34,6 +42,7 @@ export default async function RootLayout({ children }) {
           ) : (
             <LoginBtn />
           )}
+          <DarkMode />
         </div>
         {children}
       </body>

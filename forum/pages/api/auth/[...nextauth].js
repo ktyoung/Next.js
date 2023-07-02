@@ -11,8 +11,8 @@ import bcrypt from "bcrypt";
 export const authOptions = {
   providers: [
     GithubProvider({
-      clientId: "dca7bdc7278510d96560",
-      clientSecret: "0bda44a50a3f7dd6f92533b38cc18b3475bc6c80",
+      clientId: "e056ce9011e5f293204b",
+      clientSecret: "b64c911c8d7db3115c86bd0e275fd12320fa27a6",
     }),
 
     CredentialsProvider({
